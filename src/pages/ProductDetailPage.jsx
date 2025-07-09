@@ -2,7 +2,7 @@ import React, { useContext, useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import productsData from "../data/products";
 import { CartContext } from "../contexts/CartContext";
-import "./ProductDetailPage.css";
+import { formatPrice } from "../utils/currencyFormatter"; // Importa la función de formato
 
 function ProductDetailPage() {
   const { id } = useParams();
@@ -11,13 +11,16 @@ function ProductDetailPage() {
   const [quantity, setQuantity] = useState(1);
 
   useEffect(() => {
-    // En una aplicación real, harías una llamada a la API aquí
     const foundProduct = productsData.find((p) => p.id === id);
     setProduct(foundProduct);
   }, [id]);
 
   if (!product) {
-    return <div className="product-detail-loading">Cargando producto...</div>;
+    return (
+      <div className="product-detail-page product-detail-page--loading">
+        Cargando producto...
+      </div>
+    );
   }
 
   const handleAddToCart = () => {
@@ -30,29 +33,42 @@ function ProductDetailPage() {
       <img
         src={product.imageUrl}
         alt={product.name}
-        className="product-detail-image"
+        className="product-detail__image"
       />
-      <div className="product-detail-info">
-        <h1 className="product-detail-title">{product.name}</h1>
-        <p className="product-detail-price">${product.price.toFixed(2)}</p>
-        <p className="product-detail-description">{product.description}</p>
-        <p className="product-detail-stock">
+      <div className="product-detail__info">
+        <h1 className="product-detail__title">{product.name}</h1>
+        <p className="product-detail__price">
+          {formatPrice(product.price)} {/* Usa la función de formato aquí */}
+        </p>
+        <p className="product-detail__description">{product.description}</p>
+        <p className="product-detail__stock">
           Stock disponible: {product.stock}
         </p>
-
-        <div className="product-quantity-selector">
-          <label htmlFor="quantity">Cantidad:</label>
+        <div className="product-detail__quantity-selector">
+          <label htmlFor="quantity" className="product-detail__quantity-label">
+            Cantidad:
+          </label>
           <input
             type="number"
             id="quantity"
             min="1"
+            max={product.stock}
             value={quantity}
-            onChange={(e) => setQuantity(parseInt(e.target.value))}
+            onChange={(e) => {
+              const value = parseInt(e.target.value);
+              if (value >= 1 && value <= product.stock) {
+                setQuantity(value);
+              }
+            }}
+            className="product-detail__quantity-input"
           />
         </div>
-
-        <button onClick={handleAddToCart} className="add-to-cart-button">
-          Agregar al Carrito
+        <button
+          onClick={handleAddToCart}
+          className="product-detail__add-to-cart-button"
+          disabled={product.stock <= 0}
+        >
+          {product.stock > 0 ? "Agregar al Carrito" : "Sin Stock"}
         </button>
       </div>
     </div>

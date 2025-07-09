@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import ProductCard from "../components/ProductCard";
 import productsData from "../data/products"; // Importa tus productos mock
-import "./HomePage.css";
 
 function HomePage() {
   const [searchTerm, setSearchTerm] = useState("");
@@ -22,23 +21,30 @@ function HomePage() {
 
   return (
     <div className="home-page">
-      <h1>Bienvenidos a Que Tuani!</h1>
-      <div className="search-bar-container">
+      {" "}
+      <h1 className="home-page__title">Bienvenidos a Que Tuani!</h1>{" "}
+      <div className="home-page__search-bar-container">
+        {" "}
         <input
           type="text"
           placeholder="Buscar productos por nombre, descripción o categoría..."
-          className="search-input"
+          className="home-page__search-input"
           value={searchTerm}
           onChange={handleSearchChange}
         />
       </div>
-      <div className="product-list">
+      <div className="home-page__product-list">
+        {" "}
         {filteredProducts.length > 0 ? (
           filteredProducts.map((product) => (
             <ProductCard key={product.id} product={product} />
           ))
         ) : (
-          <p>No se encontraron productos.</p>
+          <>
+            <p className="home-page__no-products-message">
+              No se encontraron productos.
+            </p>
+          </>
         )}
       </div>
     </div>

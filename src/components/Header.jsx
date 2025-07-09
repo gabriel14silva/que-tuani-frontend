@@ -1,30 +1,49 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "./Header.css"; // Crea este archivo CSS
 import logoImage from "../assets/logoquetuani.png";
 
 function Header() {
   return (
     <header className="header">
-      <div className="header-left">
-        <img src={logoImage} className="logo-image" alt="Logo Que Tuani" />
-        <Link to="/" className="header-logo">
+      {" "}
+      {/* Bloque principal */}
+      <div className="header__left">
+        {" "}
+        {/* Elemento: Contenedor de la izquierda */}
+        <img
+          src={logoImage}
+          className="header__logo-image"
+          alt="Logo Que Tuani"
+        />{" "}
+        {/* Elemento: Imagen del logo */}
+        <Link to="/" className="header__logo-link">
+          {" "}
+          {/* Elemento: Enlace del logo de texto */}
           Que Tuani!
         </Link>
       </div>
-      <div className="header-center">
+      <div className="header__center">
+        {" "}
+        {/* Elemento: Contenedor del centro (búsqueda) */}
         <input
           type="text"
           placeholder="Buscar productos..."
-          className="search-input"
+          className="header__search-input" // Elemento: Input de búsqueda
         />
-        <button className="search-button">Buscar</button>
+        <button className="header__search-button">Buscar</button>{" "}
+        {/* Elemento: Botón de búsqueda */}
       </div>
-      <div className="header-right">
-        <Link to="/cart" className="header-icon">
+      <div className="header__right">
+        {" "}
+        {/* Elemento: Contenedor de la derecha (íconos) */}
+        <Link to="/cart" className="header__icon-link">
+          {" "}
+          {/* Elemento: Enlace de ícono */}
           🛒 Carrito
         </Link>
-        <Link to="/login" className="header-icon">
+        <Link to="/login" className="header__icon-link">
+          {" "}
+          {/* Elemento: Enlace de ícono */}
           👤 Iniciar Sesión
         </Link>
       </div>
