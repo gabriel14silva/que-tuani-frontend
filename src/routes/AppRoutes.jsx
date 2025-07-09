@@ -7,30 +7,25 @@ import ProductDetailPage from "../pages/ProductDetailPage";
 import CartPage from "../pages/CartPage";
 import LoginPage from "../pages/LoginPage";
 import RegisterPage from "../pages/RegisterPage";
-// Importa más páginas a medida que las crees
+import NotFoundPage from "../pages/NotFoundPage";
 
 function AppRoutes() {
   return (
     <BrowserRouter>
-      <Header />
-      <main style={{ flexGrow: 1, padding: "20px" }}>
-        {" "}
-        {/* Estilo básico para main */}
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/products/:id" element={<ProductDetailPage />} />
-          <Route path="/cart" element={<CartPage />} />
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/register" element={<RegisterPage />} />
-          {/* Agrega más rutas aquí */}
-          <Route
-            path="*"
-            element={<div>404 - Página no encontrada</div>}
-          />{" "}
-          {/* Ruta para errores */}
-        </Routes>
-      </main>
-      <Footer />
+      <div className="app-layout">
+        <Header />
+        <main>
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/products/:id" element={<ProductDetailPage />} />
+            <Route path="/cart" element={<CartPage />} />
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/register" element={<RegisterPage />} />
+            <Route path="*" element={<NotFoundPage />} />
+          </Routes>
+        </main>
+        <Footer />
+      </div>
     </BrowserRouter>
   );
 }

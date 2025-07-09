@@ -1,31 +1,42 @@
 import React, { useContext } from "react";
 import { CartContext } from "../contexts/CartContext";
-import "./CartPage.css";
+import { formatPrice } from "../utils/currencyFormatter"; // Importa la función de formato
 
 function CartPage() {
   const { cartItems, updateQuantity, removeFromCart, getTotalPrice } =
     useContext(CartContext);
 
   if (cartItems.length === 0) {
-    return <div className="cart-page-empty">Tu carrito está vacío.</div>;
+    return (
+      <div className="cart-page">
+        <p className="cart-page__empty-message">Tu carrito está vacío.</p>
+      </div>
+    );
   }
 
   return (
     <div className="cart-page">
-      <h1>Tu Carrito de Compras</h1>
-      <div className="cart-items-list">
+      <h1 className="cart-page__title">Tu Carrito de Compras</h1>
+      <div className="cart-page__items-list">
         {cartItems.map((item) => (
           <div key={item.id} className="cart-item">
             <img
               src={item.imageUrl}
               alt={item.name}
-              className="cart-item-image"
+              className="cart-item__image"
             />
-            <div className="cart-item-details">
-              <h2>{item.name}</h2>
-              <p>Precio: ${item.price.toFixed(2)}</p>
-              <div className="cart-item-quantity">
-                <label htmlFor={`qty-${item.id}`}>Cantidad:</label>
+            <div className="cart-item__details">
+              <h2 className="cart-item__name">{item.name}</h2>
+              <p className="cart-item__price-text">
+                Precio: {formatPrice(item.price)} {/* Formateado */}
+              </p>
+              <div className="cart-item__quantity-control">
+                <label
+                  htmlFor={`qty-${item.id}`}
+                  className="cart-item__quantity-label"
+                >
+                  Cantidad:
+                </label>
                 <input
                   type="number"
                   id={`qty-${item.id}`}
@@ -34,12 +45,16 @@ function CartPage() {
                   onChange={(e) =>
                     updateQuantity(item.id, parseInt(e.target.value))
                   }
+                  className="cart-item__quantity-input"
                 />
               </div>
-              <p>Subtotal: ${(item.price * item.quantity).toFixed(2)}</p>
+              <p className="cart-item__price-text">
+                Subtotal: {formatPrice(item.price * item.quantity)}{" "}
+                {/* Formateado */}
+              </p>
               <button
                 onClick={() => removeFromCart(item.id)}
-                className="remove-item-button"
+                className="cart-item__remove-button"
               >
                 Eliminar
               </button>
@@ -47,9 +62,11 @@ function CartPage() {
           </div>
         ))}
       </div>
-      <div className="cart-summary">
-        <h2>Total del Carrito: ${getTotalPrice().toFixed(2)}</h2>
-        <button className="checkout-button">Proceder al Pago</button>
+      <div className="cart-page__summary">
+        <h2 className="cart-page__summary-total">
+          Total del Carrito: {formatPrice(getTotalPrice())} {/* Formateado */}
+        </h2>
+        <button className="cart-page__checkout-button">Proceder al Pago</button>
       </div>
     </div>
   );

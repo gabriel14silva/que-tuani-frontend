@@ -1,12 +1,15 @@
 :root {
   /* Colores */
-  --primary-color: #4caf50; /* Verde vibrante */
-  --secondary-color: #ffc107; /* Amarillo para acentos */
+  --primary-color: #4caf50;
+  --secondary-color: #ffc107;
   --text-color: #333;
   --light-text-color: #666;
   --background-color: #f4f4f4;
   --white-color: #ffffff;
   --border-color: #ddd;
+
+  --footer-bg-color: #1a1a1a; /* Color de fondo oscuro */
+  --footer-text-color: #ffffff; /* Color de texto claro */
 
   /* Tipografía */
   --font-family-sans: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
