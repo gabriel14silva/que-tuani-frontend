@@ -1,63 +1,144 @@
-const products = [
+const productsData = [
   {
-    id: "prod1",
-    name: "Laptop Gamer Ultrarrápida",
-    description:
-      "Potente laptop con procesador de última generación y tarjeta gráfica dedicada.",
+    id: "p1", // ID cambiado de "1" a "p1"
+    name: "Laptop Ultrabook X1",
     price: 1200.0,
-    imageUrl: "/images/laptop.png",
-    category: "Electrónica",
-    stock: 10,
+    imageUrl: "/src/assets/images/products/laptop-ultrabook-x.png",
+    category: "electronics",
+    description:
+      "Laptop ultraligera y potente con procesador de última generación y 16GB de RAM.", // Nueva propiedad
+    stock: 15, // Nueva propiedad
   },
   {
-    id: "prod2",
-    name: "Smartphone Pro Max",
+    id: "p2", // ID cambiado
+    name: "Camiseta de Algodón Orgánico",
+    price: 25.0,
+    imageUrl: "/src/assets/images/products/camiseta-de-algodon.png",
+    category: "clothing",
     description:
-      "El último smartphone con cámara de 108MP y batería de larga duración.",
-    price: 899.99,
-    imageUrl: "/images/smartphone.png",
-    category: "Electrónica",
-    stock: 25,
-  },
-  {
-    id: "prod3",
-    name: "Teclado Mecánico RGB",
-    description:
-      "Teclado mecánico con switches personalizables e iluminación RGB.",
-    price: 75.5,
-    imageUrl: "/images/teclado.png",
-    category: "Accesorios",
+      "Camiseta suave de algodón 100% orgánico, ideal para uso diario y muy transpirable.",
     stock: 50,
   },
   {
-    id: "prod4",
-    name: 'Monitor Curvo 27"',
+    id: "p3", // ID cambiado
+    name: "Auriculares Inalámbricos Pro",
+    price: 99.99,
+    imageUrl: "/src/assets/images/products/auriculares-inalambricos.png",
+    category: "electronics",
     description:
-      "Monitor curvo de 27 pulgadas con resolución 2K y 144Hz de refresco.",
-    price: 350.0,
-    imageUrl: "/images/monitor.png",
-    category: "Electrónica",
-    stock: 15,
+      "Sonido de alta fidelidad con cancelación de ruido activa y hasta 24 horas de batería.",
+    stock: 30,
   },
   {
-    id: "prod5",
-    name: "Auriculares Inalámbricos",
-    description: "Auriculares con cancelación de ruido y 30 horas de batería.",
-    price: 120.0,
-    imageUrl: "/images/auriculares.png",
-    category: "Accesorios",
+    id: "p4", // ID cambiado
+    name: "Jeans Slim Fit Elásticos",
+    price: 45.0,
+    imageUrl: "/src/assets/images/products/jeans-azul.png",
+    category: "clothing",
+    description:
+      "Jeans ajustados pero cómodos, con tejido elástico para mayor libertad de movimiento.",
     stock: 40,
   },
   {
-    id: "prod6",
-    name: "Smartwatch Deportivo",
+    id: "p5", // ID cambiado
+    name: "Tostadora Compacta 2 Rebanadas",
+    price: 35.5,
+    imageUrl: "/src/assets/images/products/tostadora.png",
+    category: "home",
     description:
-      "Reloj inteligente con GPS, monitor de ritmo cardíaco y resistencia al agua.",
-    price: 199.99,
-    imageUrl: "/images/smartwatch.png",
-    category: "Wearables",
+      "Tostadora moderna con ranuras anchas y 7 niveles de tostado para un desayuno perfecto.",
     stock: 20,
+  },
+  {
+    id: "p6", // ID cambiado
+    name: "Smartwatch Deportivo Serie 5",
+    price: 250.0,
+    imageUrl: "/src/assets/images/products/smartwatch-deportivo-serie-5.png",
+    category: "electronics",
+    description:
+      "Reloj inteligente con GPS, monitor de ritmo cardíaco y seguimiento de actividad física.",
+    stock: 10,
+  },
+  {
+    id: "p7", // ID cambiado (y corregido para que no sea un duplicado de p1 o p2)
+    name: "Mouse Ergonómico Inalámbrico",
+    price: 30.0,
+    imageUrl: "/src/assets/images/products/mouse-ergonomico.png",
+    category: "electronics",
+    description:
+      "Diseño ergonómico para largas horas de uso, con conexión inalámbrica de 2.4GHz.",
+    stock: 25,
+  },
+  {
+    id: "p8", // ID cambiado
+    name: "Sudadera con Capucha Clásica",
+    price: 55.0,
+    imageUrl: "/src/assets/images/products/sudadera-con-capucha.png",
+    category: "clothing",
+    description:
+      "Sudadera cómoda y versátil, perfecta para cualquier estación, con bolsillo canguro.",
+    stock: 35,
+  },
+  {
+    id: "p9", // ID cambiado
+    name: "Cafetera de Goteo Programable",
+    price: 70.0,
+    imageUrl: "/src/assets/images/products/cafetera-automatica.png",
+    category: "home",
+    description:
+      "Prepara tu café automáticamente con su temporizador programable y jarra de 12 tazas.",
+    stock: 18,
+  },
+  {
+    id: "p10", // ID cambiado
+    name: "Monitor Curvo Gaming 27''",
+    price: 399.0,
+    imageUrl: "/src/assets/images/products/monitor-curvo.png",
+    category: "electronics",
+    description:
+      "Experiencia de juego inmersiva con alta tasa de refresco y tiempo de respuesta rápido.",
+    stock: 8,
+  },
+  {
+    id: "p11", // ID cambiado
+    name: "Libro: El Señor de los Anillos",
+    price: 20.0,
+    imageUrl: "/src/assets/images/products/libro-senior-anillos.png",
+    category: "books", // Nueva categoría de ejemplo
+    description:
+      "Edición especial de la épica trilogía de J.R.R. Tolkien, imprescindible en tu biblioteca.",
+    stock: 60,
+  },
+  {
+    id: "p12", // ID cambiado
+    name: "Mochila Antirrobo USB",
+    price: 40.0,
+    imageUrl: "/src/assets/images/products/mochila-usb.png",
+    category: "accessories", // Nueva categoría de ejemplo
+    description:
+      "Mochila segura con compartimentos ocultos y puerto de carga USB integrado.",
+    stock: 22,
+  },
+  {
+    id: "p13", // ID cambiado
+    name: "Iphone 14 Pro Max",
+    price: 40.0,
+    imageUrl: "/src/assets/images/products/iphone14promax.png",
+    category: "accessories", // Nueva categoría de ejemplo
+    description:
+      "Iphone 14 Pro Max con pantalla Super Retina XDR, chip A16 Bionic y cámara triple de 48MP.",
+    stock: 15,
+  },
+  {
+    id: "p14", // ID cambiado
+    name: "Teclado Mecánico RGB",
+    price: 40.0,
+    imageUrl: "/src/assets/images/products/teclado.png",
+    category: "accessories", // Nueva categoría de ejemplo
+    description:
+      "Teclado mecánico con retroiluminación RGB personalizable, ideal para gamers y escritores.",
+    stock: 15,
   },
 ];
 
-export default products;
+export default productsData; // Exporta el array de productos

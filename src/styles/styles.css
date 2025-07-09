@@ -170,20 +170,22 @@
 }
 
 /* PRODUCT CARD */
-.product-list {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  gap: var(--spacing-lg);
-  padding: var(--spacing-lg);
-  width: 100%;
-}
-
 .product-card {
   border: 1px solid var(--border-color);
   border-radius: 8px;
-  overflow: hidden;
-  background: var(--white-color);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  padding: var(--spacing-md);
+  margin: var(
+    --spacing-md
+  ); /* Este margen podría ser mejor manejarlo en el ProductGrid */
+  text-align: center;
+  background-color: var(--white-color);
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out; /* Añadido box-shadow a la transición */
+  width: 250px; /* Ancho fijo para las cards */
+  display: flex; /* <-- Asegura que la tarjeta sea un flex container */
+  flex-direction: column; /* <-- Apila los elementos verticalmente */
+  justify-content: space-between; /* <-- Empuja el botón al final */
+  height: 380px; /* Altura fija para todas las tarjetas, ajusta según necesidad */
 }
 
 .product-card:hover {
@@ -192,43 +194,71 @@
 }
 
 .product-card__link {
-  text-decoration: none;
-  color: inherit;
-  flex: 1;
-  display: flex;
-  flex-direction: column;
+  /* Enlaza toda la parte superior de la tarjeta (imagen + contenido) */
+  text-decoration: none; /* Quita el subrayado del link */
+  color: inherit; /* Hereda el color de texto del padre */
+  display: flex; /* Convierte el enlace en un flex container */
+  flex-direction: column; /* Apila el contenido verticalmente */
+  flex-grow: 1; /* Permite que el enlace ocupe el espacio disponible antes del botón */
+  justify-content: flex-start; /* Alinea el contenido al inicio */
+}
+
+.product-card__image-container {
+  /* Contenedor para la imagen para controlar su tamaño si object-fit no es suficiente */
+  width: 100%;
+  height: 180px; /* Altura fija para el contenedor de la imagen */
+  display: flex; /* Centrar la imagen dentro de este contenedor */
+  align-items: center;
+  justify-content: center;
+  margin-bottom: var(--spacing-sm);
+  overflow: hidden; /* Oculta cualquier parte de la imagen que se salga */
 }
 
 .product-card__image {
-  width: 100%;
-  height: 180px;
-  object-fit: contain;
-  margin-bottom: var(--spacing-sm);
-  background: #f9f9f9;
-  border-radius: 4px;
+  /* Elemento: Imagen del producto */
+  max-width: 100%; /* Asegura que la imagen no se desborde del contenedor */
+  max-height: 100%; /* Asegura que la imagen no se desborde del contenedor */
+  object-fit: contain; /* Ajusta la imagen dentro del contenedor sin recortar */
+  /* margin-bottom: var(--spacing-sm); -- Movida al image-container */
+}
+
+.product-card__content {
+  /* Contenedor para el título y el precio */
+  flex-grow: 1; /* Permite que el contenido ocupe el espacio restante */
+  margin-bottom: var(--spacing-md); /* Espacio antes del botón */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; /* Alinea el título y precio al inicio del espacio */
 }
 
 .product-card__title {
+  /* Elemento: Título del producto */
   font-size: 1.1rem;
-  margin: var(--spacing-sm) 0;
-  color: var(--text-color);
+  margin-bottom: var(--spacing-sm);
+  color: var(--primary-color);
   text-decoration: none;
   overflow: hidden;
   text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  min-height: 3em;
+  white-space: nowrap;
+  display: block; /* Asegura que 'overflow' y 'white-space' funcionen */
+  line-height: 1.3; /* Mejorar legibilidad */
+}
+
+.product-card__title:hover {
+  text-decoration: underline; /* Puedes añadir un hover para el título del link */
 }
 
 .product-card__price {
+  /* Elemento: Precio del producto */
   font-size: 1.2rem;
   font-weight: bold;
-  color: var(--primary-color);
-  margin: var(--spacing-sm) 0 var(--spacing-md);
+  color: var(--text-color);
+  margin-top: auto; /* Empuja el precio hacia abajo si hay espacio, alineándose con el título */
+  margin-bottom: 0; /* Quita el margen inferior para que flexbox lo maneje */
 }
 
 .product-card__button {
+  /* Elemento: Botón de la tarjeta de producto */
   background-color: var(--primary-color);
   color: var(--white-color);
   padding: var(--spacing-sm) var(--spacing-md);
@@ -236,12 +266,115 @@
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  width: 100%;
-  margin-top: auto;
+  width: 100%; /* Asegura que el botón ocupe todo el ancho de la tarjeta */
+  margin-top: auto; /* Empuja el botón al final de la tarjeta */
 }
 
 .product-card__button:hover {
-  background-color: #3d8b40;
+  background-color: #45a049; /* Verde un poco más oscuro */
+}
+/* BASIC-PAGE */
+.basic-page-content {
+  max-width: 800px;
+  margin: var(--spacing-xl) auto;
+  padding: var(--spacing-lg);
+  background-color: var(--white-color);
+  border-radius: 8px;
+  box-shadow: var(--shadow-sm);
+  text-align: center;
+  line-height: 1.6;
+}
+
+/* CATEGORY PAGE */
+.category-page {
+  padding: var(--spacing-lg);
+  text-align: center;
+  max-width: 1400px;
+  margin: var(--spacing-xl) auto;
+}
+
+.category-page--loading,
+.category-page--error {
+  font-size: 1.2rem;
+  color: var(--light-text-color);
+  padding: var(--spacing-xl);
+}
+
+.category-page--error {
+  color: #dc3545;
+}
+
+.category-page__title {
+  color: var(--primary-color);
+  margin-bottom: var(--spacing-xl);
+}
+
+.category-page__no-products {
+  font-size: 1.1rem;
+  color: var(--light-text-color);
+  padding: var(--spacing-xl);
+}
+
+/* PRODUCT LIST PAGE */
+.products-list-page {
+  padding: var(--spacing-lg);
+  text-align: center;
+  max-width: 1400px;
+  margin: var(--spacing-xl) auto;
+}
+
+.products-list-page--loading,
+.products-list-page--error {
+  font-size: 1.2rem;
+  color: var(--light-text-color);
+  padding: var(--spacing-xl);
+}
+
+.products-list-page--error {
+  color: #dc3545; /* Rojo para errores */
+}
+
+.products-list-page__title {
+  color: var(--primary-color);
+  margin-bottom: var(--spacing-xl);
+}
+
+.products-list-page__search-container {
+  margin-bottom: var(--spacing-lg);
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.products-list-page__search-input {
+  width: 100%;
+  max-width: 500px; /* Controla el ancho del input de búsqueda */
+  padding: var(--spacing-sm) var(--spacing-md);
+  border-radius: 5px;
+  border: 1px solid var(--border-color);
+  font-size: var(--font-size-base);
+  box-sizing: border-box; /* Incluye padding en el ancho */
+}
+
+.products-list-page__no-results {
+  font-size: 1.1rem;
+  color: var(--light-text-color);
+  padding: var(--spacing-xl);
+}
+
+/* PRODUCT GRID */
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fill,
+    minmax(250px, 1fr)
+  ); /* Columnas responsivas */
+  gap: var(--spacing-md); /* Espacio entre las tarjetas */
+  justify-items: center; /* Centra los ítems en las celdas de la cuadrícula */
+  padding: var(--spacing-lg) 0; /* Padding en los lados si es necesario */
+  max-width: 1200px; /* Ancho máximo para la cuadrícula */
+  margin: var(--spacing-lg) auto; /* Centra la cuadrícula en la página */
 }
 
 /* AUTH PAGE */
@@ -472,6 +605,40 @@
   gap: 20px;
   padding: 20px;
   width: 100%;
+}
+
+.home-page__cta-buttons {
+  margin-top: var(--spacing-xl);
+  display: flex;
+  gap: var(--spacing-md);
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.home-page__link-button {
+  display: inline-block;
+  background-color: var(--primary-color);
+  color: var(--white-color);
+  padding: var(--spacing-md) var(--spacing-xl);
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+  min-width: 200px; /* Asegura un ancho mínimo para los botones */
+  text-align: center;
+}
+
+.home-page__link-button:hover {
+  background-color: #45a049; /* Verde más oscuro */
+}
+
+.home-page__link-button--secondary {
+  background-color: var(--secondary-color);
+  color: var(--text-color);
+}
+
+.home-page__link-button--secondary:hover {
+  background-color: #e0a800; /* Amarillo más oscuro */
 }
 
 /* Estilos para cada tarjeta de producto */
