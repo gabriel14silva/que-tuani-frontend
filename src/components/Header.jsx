@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import logoImage from "../assets/logoquetuani.png";
+import logoImage from "../assets/images/logos/logoquetuani.png";
 
 function Header() {
   return (

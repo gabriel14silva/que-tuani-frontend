@@ -2,7 +2,6 @@ import React, { useContext, useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import productsData from "../data/products";
 import { CartContext } from "../contexts/CartContext";
-import { formatPrice } from "../utils/currencyFormatter"; // Importa la función de formato
 
 function ProductDetailPage() {
   const { id } = useParams();
@@ -11,15 +10,22 @@ function ProductDetailPage() {
   const [quantity, setQuantity] = useState(1);
 
   useEffect(() => {
+    // En una aplicación real, harías una llamada a la API aquí
     const foundProduct = productsData.find((p) => p.id === id);
     setProduct(foundProduct);
   }, [id]);
 
+  // Función para formatear el precio como Córdobas Nicaragüenses
+  const formatPrice = (price) => {
+    return new Intl.NumberFormat("es-NI", {
+      style: "currency",
+      currency: "NIO",
+    }).format(price);
+  };
+
   if (!product) {
     return (
-      <div className="product-detail-page product-detail-page--loading">
-        Cargando producto...
-      </div>
+      <div className="product-detail-page--loading">Cargando producto...</div>
     );
   }
 
@@ -38,8 +44,9 @@ function ProductDetailPage() {
       <div className="product-detail__info">
         <h1 className="product-detail__title">{product.name}</h1>
         <p className="product-detail__price">
-          {formatPrice(product.price)} {/* Usa la función de formato aquí */}
-        </p>
+          {formatPrice(product.price)}
+        </p>{" "}
+        {/* <--- CAMBIO AQUÍ */}
         <p className="product-detail__description">{product.description}</p>
         <p className="product-detail__stock">
           Stock disponible: {product.stock}
@@ -52,23 +59,16 @@ function ProductDetailPage() {
             type="number"
             id="quantity"
             min="1"
-            max={product.stock}
             value={quantity}
-            onChange={(e) => {
-              const value = parseInt(e.target.value);
-              if (value >= 1 && value <= product.stock) {
-                setQuantity(value);
-              }
-            }}
+            onChange={(e) => setQuantity(parseInt(e.target.value))}
             className="product-detail__quantity-input"
           />
         </div>
         <button
           onClick={handleAddToCart}
           className="product-detail__add-to-cart-button"
-          disabled={product.stock <= 0}
         >
-          {product.stock > 0 ? "Agregar al Carrito" : "Sin Stock"}
+          Agregar al Carrito
         </button>
       </div>
     </div>
