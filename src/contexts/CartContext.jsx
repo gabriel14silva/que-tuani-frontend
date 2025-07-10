@@ -1,38 +1,31 @@
-import React, { createContext, useState, useEffect } from "react";
+import React, { createContext, useEffect } from "react"; // Eliminamos useState
+import useLocalStorage from "../hooks/useLocalStorage"; // <-- Importa tu nuevo Custom Hook
 
-// 1. Crea el Contexto
 export const CartContext = createContext();
 
-// 2. Crea el Provider
-// El Provider ahora recibe 'updateProductStock' y 'productsData' como props
 export const CartProvider = ({
   children,
   updateProductStock,
   productsData,
 }) => {
-  // Intentar cargar el carrito desde localStorage, si no, un array vacío
-  const [cartItems, setCartItems] = useState(() => {
-    try {
-      const localData = localStorage.getItem("cartItems");
-      return localData ? JSON.parse(localData) : [];
-    } catch (error) {
-      console.error("Error parsing cartItems from localStorage:", error);
-      return [];
-    }
-  });
+  // Usamos useLocalStorage para manejar el estado del carrito
+  // Su primera llamada ya intentará cargar de localStorage
+  const [cartItems, setCartItems] = useLocalStorage("cartItems", []); // <-- CAMBIO AQUÍ
 
-  // Guardar el carrito en localStorage cada vez que cambie
+  // El useEffect para guardar en localStorage ya NO es necesario aquí,
+  // porque useLocalStorage lo maneja internamente.
+  // Puedes eliminar el siguiente bloque:
+  /*
   useEffect(() => {
     localStorage.setItem("cartItems", JSON.stringify(cartItems));
   }, [cartItems]);
+  */
 
-  // Función para agregar un producto al carrito
   const addToCart = (productToAdd, quantity) => {
     const existingItemIndex = cartItems.findIndex(
       (item) => item.id === productToAdd.id
     );
 
-    // Encuentra el producto real en los datos actuales para obtener el stock actualizado
     const currentProductInStock = productsData.find(
       (p) => p.id === productToAdd.id
     );
@@ -46,16 +39,14 @@ export const CartProvider = ({
       return;
     }
 
-    // Lógica de control de stock ANTES de añadir al carrito
     if (currentProductInStock.stock < quantity) {
       alert(
         `Solo quedan ${currentProductInStock.stock} unidades de ${productToAdd.name} en stock.`
       );
-      return; // No agregar al carrito si no hay suficiente stock
+      return;
     }
 
     if (existingItemIndex > -1) {
-      // Si el producto ya está en el carrito, actualiza la cantidad
       const updatedCartItems = cartItems.map((item, index) =>
         index === existingItemIndex
           ? { ...item, quantity: item.quantity + quantity }
@@ -63,27 +54,30 @@ export const CartProvider = ({
       );
       setCartItems(updatedCartItems);
     } else {
-      // Si es un nuevo producto, añádelo
       setCartItems([...cartItems, { ...productToAdd, quantity }]);
     }
 
-    // ¡IMPORTANTE! Llamar a la función para actualizar el stock (restar)
-    // Para restar 'quantity', pasamos 'quantity' positivo a updateProductStock
-    updateProductStock(productToAdd.id, quantity); // <--- CORRECCIÓN AQUÍ
+    console.log(
+      `[CartContext - addToCart] Producto: ${productToAdd.name}, Cantidad agregada: ${quantity}. Llamando a updateProductStock para RESTAR ${quantity}.`
+    );
+    updateProductStock(productToAdd.id, quantity);
   };
 
-  // Función para eliminar un producto del carrito
   const removeFromCart = (id) => {
-    const itemToRemove = cartItems.find((item) => item.id === id); // Encuentra el ítem antes de eliminarlo
+    const itemToRemove = cartItems.find((item) => item.id === id);
     if (itemToRemove) {
-      // Si el ítem existe, devuelve su cantidad al stock
-      // Para sumar 'itemToRemove.quantity', pasamos '-itemToRemove.quantity' a updateProductStock
-      updateProductStock(id, -itemToRemove.quantity); // <--- CORRECCIÓN AQUÍ
+      console.log(
+        `[CartContext - removeFromCart] Eliminando producto: ${itemToRemove.name} (ID: ${id}) con cantidad: ${itemToRemove.quantity}. Llamando a updateProductStock para SUMAR ${itemToRemove.quantity}.`
+      );
+      updateProductStock(id, -itemToRemove.quantity);
+    } else {
+      console.log(
+        `[CartContext - removeFromCart] Producto con ID: ${id} no encontrado en el carrito.`
+      );
     }
     setCartItems(cartItems.filter((item) => item.id !== id));
   };
 
-  // Función para actualizar la cantidad de un producto en el carrito
   const updateQuantity = (id, newQuantity) => {
     const cartItem = cartItems.find((item) => item.id === id);
     if (!cartItem) {
@@ -98,23 +92,27 @@ export const CartProvider = ({
     }
 
     const oldQuantity = cartItem.quantity;
-    const quantityDifference = newQuantity - oldQuantity; // Si es positivo, se añadió; si es negativo, se quitó.
+    const quantityDifference = newQuantity - oldQuantity;
 
-    // Si la nueva cantidad es 0 o menos, eliminar del carrito
+    console.log(
+      `[CartContext - updateQuantity] ID: ${id}, Cantidad anterior: ${oldQuantity}, Nueva cantidad: ${newQuantity}, Diferencia: ${quantityDifference}.`
+    );
+
     if (newQuantity <= 0) {
-      removeFromCart(id); // removeFromCart ya maneja la devolución al stock
+      console.log(
+        `[CartContext - updateQuantity] Nueva cantidad es <= 0, llamando a removeFromCart para ID: ${id}.`
+      );
+      removeFromCart(id);
       return;
     }
 
-    // Si se está intentando añadir más de lo disponible
     if (
-      quantityDifference > 0 && // Solo si se está aumentando la cantidad
+      quantityDifference > 0 &&
       currentProductInStock.stock < quantityDifference
     ) {
       alert(
         `Solo quedan ${currentProductInStock.stock} unidades adicionales de ${cartItem.name}.`
       );
-      // Ajustar la nueva cantidad para que no exceda el stock disponible
       setCartItems(
         cartItems.map((item) =>
           item.id === id
@@ -122,7 +120,9 @@ export const CartProvider = ({
             : item
         )
       );
-      // Restar el stock disponible que se acaba de añadir
+      console.log(
+        `[CartContext - updateQuantity] Stock insuficiente. Ajustando cantidad en carrito. Llamando a updateProductStock para RESTAR el stock disponible (${currentProductInStock.stock}).`
+      );
       updateProductStock(id, currentProductInStock.stock);
       return;
     }
@@ -133,19 +133,16 @@ export const CartProvider = ({
       )
     );
 
-    // Actualizar stock:
-    // Si quantityDifference es positivo (se añadió al carrito), se resta del stock.
-    // Si quantityDifference es negativo (se quitó del carrito), se suma al stock.
-    // Pasamos 'quantityDifference' directamente a updateProductStock.
-    updateProductStock(id, quantityDifference); // <--- CORRECCIÓN AQUÍ
+    console.log(
+      `[CartContext - updateQuantity] Actualizando stock para ID: ${id} con diferencia: ${quantityDifference}.`
+    );
+    updateProductStock(id, quantityDifference);
   };
 
-  // Calcular el total de artículos en el carrito
   const getTotalItems = () => {
     return cartItems.reduce((total, item) => total + item.quantity, 0);
   };
 
-  // Calcular el precio total del carrito
   const getTotalPrice = () => {
     return cartItems.reduce(
       (total, item) => total + item.price * item.quantity,
