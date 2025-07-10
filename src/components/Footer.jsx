@@ -17,7 +17,9 @@ function Footer() {
         <a href="/contact" className="footer__nav-link">
           Contacto
         </a>{" "}
-        <a href="/privacy" className="footer__nav-link"></a>{" "}
+        <a href="/privacy-policy" className="footer__nav-link">
+          Política de Privacidad
+        </a>{" "}
       </nav>
     </footer>
   );
