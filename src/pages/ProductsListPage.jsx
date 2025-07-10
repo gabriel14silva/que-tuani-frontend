@@ -1,32 +1,40 @@
 import React, { useState, useEffect } from "react";
-import ProductCard from "../components/ProductCard"; // Asegúrate de tener este componente
-import ProductGrid from "../components/ProductGrid"; // El contenedor que acabamos de crear
-import productsData from "../data/products"; // <--- IMPORTA DESDE AQUÍ
+import ProductCard from "../components/ProductCard";
+import ProductGrid from "../components/ProductGrid";
+// import productsData from "../data/products"; // <--- ELIMINA ESTA LÍNEA
 
-function ProductsListPage() {
-  const [products, setProducts] = useState([]);
-  const [loading, setLoading] = useState(true);
+// ProductsListPage ahora recibe 'products' como prop
+function ProductsListPage({ products }) {
+  // <--- CAMBIO AQUÍ
+  // Ya no necesitas un estado local para 'products' aquí,
+  // ya que lo recibes como prop de AppRoutes
+  // const [products, setProducts] = useState([]); // <--- ELIMINA O COMENTA ESTA LÍNEA
+  const [loading, setLoading] = useState(false); // <--- CAMBIO: set a false ya que los productos vienen de prop
   const [error, setError] = useState(null);
-  const [searchTerm, setSearchTerm] = useState(""); // Para la barra de búsqueda
+  const [searchTerm, setSearchTerm] = useState("");
 
+  // El useEffect para cargar productos ya no es necesario aquí,
+  // los productos ya vienen en las props
+  /*
   useEffect(() => {
     setLoading(true);
     setError(null);
-    // Ya no necesitas la Promesa para simular API, usa directamente productsData
     try {
-      setProducts(productsData); // <--- USA productsData DIRECTAMENTE
+      setProducts(productsData);
       setLoading(false);
     } catch (err) {
       console.error("Error loading products:", err);
       setError("No se pudieron cargar los productos.");
       setLoading(false);
     }
-  }, []); // El array de dependencia está vacío porque solo carga una vez
+  }, []);
+  */
 
   const filteredProducts = products.filter((product) =>
     product.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
+  // El estado de loading siempre será false si los productos vienen por prop
   if (loading) {
     return (
       <div className="products-list-page products-list-page--loading">
