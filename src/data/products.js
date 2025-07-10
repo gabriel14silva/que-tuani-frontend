@@ -18,6 +18,7 @@ const productsData = [
     description:
       "Camiseta suave de algodón 100% orgánico, ideal para uso diario y muy transpirable.",
     stock: 50,
+    isFeatured: true,
   },
   {
     id: "p3",
@@ -28,6 +29,7 @@ const productsData = [
     description:
       "Sonido de alta fidelidad con cancelación de ruido activa y hasta 24 horas de batería.",
     stock: 30,
+    isFeatured: true,
   },
   {
     id: "p4",
@@ -68,6 +70,7 @@ const productsData = [
     description:
       "Diseño ergonómico para largas horas de uso, con conexión inalámbrica de 2.4GHz.",
     stock: 25,
+    isFeatured: true,
   },
   {
     id: "p8",
@@ -110,11 +113,11 @@ const productsData = [
     stock: 60,
   },
   {
-    id: "p12", // ID cambiado
+    id: "p12",
     name: "Mochila Antirrobo USB",
     price: 1300.0,
     imageUrl: "/src/assets/images/products/mochila-usb.png",
-    category: "accessories", // Nueva categoría de ejemplo
+    category: "accessories",
     description:
       "Mochila segura con compartimentos ocultos y puerto de carga USB integrado.",
     stock: 22,
@@ -128,6 +131,7 @@ const productsData = [
     description:
       "Iphone 14 Pro Max con pantalla Super Retina XDR, chip A16 Bionic y cámara triple de 48MP.",
     stock: 15,
+    isFeatured: true,
   },
   {
     id: "p14",
@@ -148,6 +152,26 @@ const productsData = [
     description:
       "Sillón sofá de gamusa, cómodo y elegante, perfecto para cualquier sala de estar.",
     stock: 12,
+  },
+  {
+    id: "p16",
+    name: "Ropero de Madera Natural",
+    price: 27300.98,
+    imageUrl: "/src/assets/images/products/ropero-madera.png",
+    category: "home",
+    description:
+      "Ropero de madera natural, espacioso y con un diseño elegante, ideal para organizar tu ropa.",
+    stock: 23,
+  },
+  {
+    id: "p17",
+    name: "Vestido de Noche Elegante",
+    price: 2350.98,
+    imageUrl: "/src/assets/images/products/vestido-azul.png",
+    category: "clothing",
+    description:
+      "Vestido de noche elegante, confeccionado con telas de alta calidad y un diseño sofisticado.",
+    stock: 4,
   },
 ];
 

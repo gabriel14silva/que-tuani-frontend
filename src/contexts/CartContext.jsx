@@ -10,13 +10,7 @@ export const CartProvider = ({
 }) => {
   const [cartItems, setCartItems] = useLocalStorage("cartItems", []);
 
-  // Sincroniza el localStorage cada vez que cartItems cambia
-  // Este useEffect no es estrictamente necesario si useLocalStorage ya maneja esto internamente
-  // pero lo dejo por si tu implementación de useLocalStorage lo requiere así.
-  useEffect(() => {
-    // Si useLocalStorage ya lo maneja, puedes eliminar esta línea de aquí.
-    // O puedes mover la lógica del reducer aquí si usas useReducer en vez de useState para cartItems.
-  }, [cartItems]); // Solo observa cartItems
+  useEffect(() => {}, [cartItems]);
 
   const addToCart = (productToAdd, quantity) => {
     const existingItemIndex = cartItems.findIndex(

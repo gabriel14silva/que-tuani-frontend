@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import banners from "../data/banners";
 
 function ImageSlider() {
@@ -41,15 +42,15 @@ function ImageSlider() {
 
       <div className="image-slider__content">
         {banners.map((banner, index) => (
-          <a
+          <Link
             key={banner.id}
-            href={banner.link}
+            to={banner.link}
             className={`image-slider__slide ${
               index === currentIndex ? "active" : ""
             }`}
             style={{ backgroundImage: `url(${banner.imageUrl})` }}
             aria-label={banner.altText}
-          ></a>
+          ></Link>
         ))}
       </div>
 
