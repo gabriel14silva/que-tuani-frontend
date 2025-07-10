@@ -1,27 +1,28 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom"; // Para obtener el parámetro de la URL
+import { useParams } from "react-router-dom";
 import ProductCard from "../components/ProductCard";
 import ProductGrid from "../components/ProductGrid";
-import productsData from "../data/products"; // <--- IMPORTA DESDE AQUÍ
+// import productsData from "../data/products"; // <--- ELIMINA ESTA LÍNEA
 
-// Reutilizamos los mismos productos de ejemplo
-
-function CategoryPage() {
-  const { categoryName } = useParams(); // Obtiene 'electronics', 'clothing', etc. de la URL
-  const [products, setProducts] = useState([]);
-  const [loading, setLoading] = useState(true);
+// CategoryPage ahora recibe 'products' como prop
+function CategoryPage({ products }) {
+  // <--- CAMBIO AQUÍ
+  const { categoryName } = useParams();
+  const [filteredProducts, setFilteredProducts] = useState([]); // <--- Cambia el nombre para evitar confusión
+  const [loading, setLoading] = useState(false); // <--- CAMBIO: set a false ya que los productos vienen de prop
   const [error, setError] = useState(null);
 
   useEffect(() => {
     setLoading(true);
     setError(null);
 
-    // Filtra directamente desde productsData
     try {
-      const filtered = productsData.filter(
+      // Filtra desde los productos que vienen por prop
+      const filtered = products.filter(
+        // <--- CAMBIO AQUÍ
         (product) => product.category === categoryName
       );
-      setProducts(filtered);
+      setFilteredProducts(filtered); // <--- Usa el nuevo estado
       setLoading(false);
     } catch (err) {
       console.error(
@@ -31,7 +32,7 @@ function CategoryPage() {
       setError("No se pudieron cargar los productos de esta categoría.");
       setLoading(false);
     }
-  }, [categoryName]); // Re-ejecuta cuando cambia la categoría en la URL
+  }, [categoryName, products]); // <--- Añade 'products' a las dependencias
 
   if (loading) {
     return (
@@ -52,18 +53,21 @@ function CategoryPage() {
       <h1 className="category-page__title">
         Categoría:{" "}
         {categoryName.charAt(0).toUpperCase() + categoryName.slice(1)}{" "}
-        {/* Capitaliza el nombre */}
       </h1>
 
-      {products.length === 0 ? (
+      {filteredProducts.length === 0 ? ( // <--- Usa el nuevo estado
         <p className="category-page__no-products">
           No hay productos disponibles en esta categoría.
         </p>
       ) : (
         <ProductGrid>
-          {products.map((product) => (
-            <ProductCard key={product.id} product={product} />
-          ))}
+          {filteredProducts.map(
+            (
+              product // <--- Usa el nuevo estado
+            ) => (
+              <ProductCard key={product.id} product={product} />
+            )
+          )}
         </ProductGrid>
       )}
     </div>
