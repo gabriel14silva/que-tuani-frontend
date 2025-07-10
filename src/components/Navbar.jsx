@@ -32,6 +32,11 @@ function Navbar() {
           </Link>
         </li>
         <li className="navbar__item">
+          <Link to="/category/home" className="navbar__link">
+            Hogar
+          </Link>
+        </li>
+        <li className="navbar__item">
           <Link to="/about" className="navbar__link">
             Acerca de
           </Link>
