@@ -5,13 +5,10 @@ function Navbar() {
   return (
     <nav className="navbar">
       {" "}
-      {/* Bloque principal BEM para la barra de navegación */}
       <ul className="navbar__list">
         {" "}
-        {/* Elemento: Lista de enlaces */}
         <li className="navbar__item">
           {" "}
-          {/* Elemento: Ítem de la lista */}
           <Link to="/" className="navbar__link">
             Inicio
           </Link>

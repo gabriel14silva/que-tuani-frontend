@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { CartContext } from "../contexts/CartContext";
-import { formatPrice } from "../utils/currencyFormatter"; // Importa la función de formato
+import { formatPrice } from "../utils/currencyFormatter";
 
 function CartPage() {
   const { cartItems, updateQuantity, removeFromCart, getTotalPrice } =
@@ -28,7 +28,7 @@ function CartPage() {
             <div className="cart-item__details">
               <h2 className="cart-item__name">{item.name}</h2>
               <p className="cart-item__price-text">
-                Precio: {formatPrice(item.price)} {/* Formateado */}
+                Precio: {formatPrice(item.price)}
               </p>
               <div className="cart-item__quantity-control">
                 <label
@@ -50,7 +50,6 @@ function CartPage() {
               </div>
               <p className="cart-item__price-text">
                 Subtotal: {formatPrice(item.price * item.quantity)}{" "}
-                {/* Formateado */}
               </p>
               <button
                 onClick={() => removeFromCart(item.id)}
@@ -64,7 +63,7 @@ function CartPage() {
       </div>
       <div className="cart-page__summary">
         <h2 className="cart-page__summary-total">
-          Total del Carrito: {formatPrice(getTotalPrice())} {/* Formateado */}
+          Total del Carrito: {formatPrice(getTotalPrice())}
         </h2>
         <button className="cart-page__checkout-button">Proceder al Pago</button>
       </div>

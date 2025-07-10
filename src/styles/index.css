@@ -12,7 +12,6 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Reset mejorado */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -37,7 +36,6 @@ body {
   flex-direction: column;
 }
 
-/* Elimina el estilo inline del main en AppRoutes */
 main {
   flex: 1;
   padding: var(--spacing-lg);

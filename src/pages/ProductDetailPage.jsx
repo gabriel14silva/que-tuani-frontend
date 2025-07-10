@@ -1,23 +1,18 @@
 import React, { useContext, useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-// import productsData from "../data/products"; // <--- ELIMINA ESTA LÍNEA
 import { CartContext } from "../contexts/CartContext";
 
-// El componente ProductDetailPage ahora recibe 'products' como prop
 function ProductDetailPage({ products }) {
-  // <--- CAMBIO AQUÍ
   const { id } = useParams();
   const { addToCart } = useContext(CartContext);
   const [product, setProduct] = useState(null);
   const [quantity, setQuantity] = useState(1);
 
   useEffect(() => {
-    // Busca el producto en las props 'products'
-    const foundProduct = products.find((p) => p.id === id); // <--- CAMBIO AQUÍ
+    const foundProduct = products.find((p) => p.id === id);
     setProduct(foundProduct);
-    // Reinicia la cantidad a 1 cada vez que cambia el producto
-    setQuantity(1); // Añadido para reiniciar la cantidad
-  }, [id, products]); // <--- Añade 'products' a las dependencias para que se re-ejecute si el stock cambia
+    setQuantity(1);
+  }, [id, products]);
 
   const formatPrice = (price) => {
     return new Intl.NumberFormat("es-NI", {
@@ -26,12 +21,10 @@ function ProductDetailPage({ products }) {
     }).format(price);
   };
 
-  // Deshabilitar botón y ajustar cantidad si el stock es 0
   const isOutOfStock = product && product.stock <= 0;
-  // Asegurarse de que la cantidad no exceda el stock disponible
   useEffect(() => {
     if (product && quantity > product.stock) {
-      setQuantity(Math.max(1, product.stock)); // Establece la cantidad máxima al stock disponible o 1
+      setQuantity(Math.max(1, product.stock));
     }
   }, [product, quantity]);
 
@@ -46,9 +39,7 @@ function ProductDetailPage({ products }) {
       alert("Este producto está agotado.");
       return;
     }
-    // addToCart ya tiene la lógica de control de stock
     addToCart(product, quantity);
-    // alert(`Se agregaron ${quantity} de ${product.name} al carrito!`); // El alert ahora se maneja dentro de addToCart en CartContext
   };
 
   return (
@@ -64,7 +55,6 @@ function ProductDetailPage({ products }) {
         <p className="product-detail__description">{product.description}</p>
         <p className="product-detail__stock">
           Stock disponible: {product.stock > 0 ? product.stock : "Agotado"}{" "}
-          {/* <--- CAMBIO AQUÍ para mostrar 'Agotado' */}
         </p>
 
         <div className="product-detail__quantity-selector">
@@ -75,21 +65,20 @@ function ProductDetailPage({ products }) {
             type="number"
             id="quantity"
             min="1"
-            max={product.stock} // <--- NUEVO: Establece el máximo basado en el stock
+            max={product.stock}
             value={quantity}
             onChange={(e) => setQuantity(parseInt(e.target.value))}
             className="product-detail__quantity-input"
-            disabled={isOutOfStock} // <--- Deshabilita el input si no hay stock
+            disabled={isOutOfStock}
           />
         </div>
 
         <button
           onClick={handleAddToCart}
           className="product-detail__add-to-cart-button"
-          disabled={isOutOfStock} // <--- Deshabilita el botón si no hay stock
+          disabled={isOutOfStock}
         >
           {isOutOfStock ? "Agotado" : "Agregar al Carrito"}{" "}
-          {/* <--- Cambia el texto del botón */}
         </button>
       </div>
     </div>

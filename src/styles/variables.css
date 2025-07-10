@@ -8,8 +8,8 @@
   --white-color: #ffffff;
   --border-color: #ddd;
 
-  --footer-bg-color: #1a1a1a; /* Color de fondo oscuro */
-  --footer-text-color: #ffffff; /* Color de texto claro */
+  --footer-bg-color: #1a1a1a;
+  --footer-text-color: #ffffff;
 
   /* Tipografía */
   --font-family-sans: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
