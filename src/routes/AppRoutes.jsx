@@ -15,16 +15,16 @@ import NotFoundPage from "../pages/NotFoundPage";
 import AboutPage from "../pages/AboutPage";
 import ContactPage from "../pages/ContactPage";
 import PrivacyPolicyPage from "../pages/PrivacyPolicyPage";
-import ProfilePage from "../pages/ProfilePage"; // <-- Importa la nueva página de Perfil
+import ProfilePage from "../pages/ProfilePage";
+import RegisterPage from "../pages/RegisterPage";
 
-import { AuthProvider } from "../hooks/useAuth"; // <-- Importa el AuthProvider
-
-import ProtectedRoute from "../ProtectedRoute"; // <-- Importa el ProtectedRoute (lo crearemos en el Paso 6)
+import { AuthProvider } from "../hooks/useAuth.jsx";
 
 import initialProductsData from "../data/products";
 
-import { CartProvider } from "../contexts/CartContext";
-import RegisterPage from "../pages/RegisterPage";
+// Importa useCart desde tu CartContext
+import { CartProvider, useCart } from "../contexts/CartContext.jsx";
+import ProtectedRoute from "../ProtectedRoute.jsx";
 
 function AppRoutes() {
   const [products, setProducts] = useState(initialProductsData);
@@ -49,59 +49,71 @@ function AppRoutes() {
 
   return (
     <Router>
-      {/* Envuelve toda la aplicación con AuthProvider */}
       <AuthProvider>
-        {" "}
-        {/* <-- AÑADE ESTO */}
         <CartProvider
           updateProductStock={updateProductStock}
           productsData={products}
         >
-          <Header />
-          <Navbar />
-          <main>
-            <Routes>
-              <Route path="/" element={<HomePage />} />
-              <Route
-                path="/products"
-                element={<ProductsListPage products={products} />}
-              />
-              <Route
-                path="/category/:categoryName"
-                element={<CategoryPage products={products} />}
-              />
-              <Route
-                path="/product/:id"
-                element={<ProductDetailPage products={products} />}
-              />
-              <Route path="/cart" element={<CartPage />} />
-              <Route path="/login" element={<LoginPage />} />
-              <Route path="/register" element={<RegisterPage />} />
-              <Route path="/about" element={<AboutPage />} />
-              <Route path="/contact" element={<ContactPage />} />
-              <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
-
-              {/* RUTA PROTEGIDA para el Perfil del Usuario */}
-              {/* Solo se accede si el usuario está autenticado */}
-              <Route
-                path="/profile"
-                element={
-                  <ProtectedRoute>
-                    {" "}
-                    {/* <-- Envuelve ProfilePage con ProtectedRoute */}
-                    <ProfilePage />
-                  </ProtectedRoute>
-                }
-              />
-
-              <Route path="*" element={<NotFoundPage />} />
-            </Routes>
-          </main>
-          <Footer />
+          {/* Componente auxiliar para obtener el conteo del carrito */}
+          <CartCountPasser
+            products={products}
+            updateProductStock={updateProductStock}
+          />
         </CartProvider>
-      </AuthProvider>{" "}
-      {/* <-- CIERRA ESTO */}
+      </AuthProvider>
     </Router>
+  );
+}
+
+// Nuevo componente auxiliar para pasar el conteo del carrito
+function CartCountPasser({ products, updateProductStock }) {
+  const { cartItems } = useCart(); // <-- Obtén los ítems del carrito
+  const cartItemCount = cartItems.reduce(
+    (total, item) => total + item.quantity,
+    0
+  ); // Calcula la cantidad total
+
+  return (
+    <>
+      <Header cartItemCount={cartItemCount} />{" "}
+      {/* <-- Pasa el conteo al Header */}
+      <Navbar />
+      <main>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route
+            path="/products"
+            element={<ProductsListPage products={products} />}
+          />
+          <Route
+            path="/category/:categoryName"
+            element={<CategoryPage products={products} />}
+          />
+          <Route
+            path="/product/:id"
+            element={<ProductDetailPage products={products} />}
+          />
+          <Route path="/cart" element={<CartPage />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/about" element={<AboutPage />} />
+          <Route path="/contact" element={<ContactPage />} />
+          <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
+          <Route path="/register" element={<RegisterPage />} />
+
+          <Route
+            path="/profile"
+            element={
+              <ProtectedRoute>
+                <ProfilePage />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route path="*" element={<NotFoundPage />} />
+        </Routes>
+      </main>
+      <Footer />
+    </>
   );
 }
 
