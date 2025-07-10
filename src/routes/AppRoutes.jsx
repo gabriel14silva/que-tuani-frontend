@@ -14,59 +14,93 @@ import LoginPage from "../pages/LoginPage";
 import NotFoundPage from "../pages/NotFoundPage";
 import AboutPage from "../pages/AboutPage";
 import ContactPage from "../pages/ContactPage";
+import PrivacyPolicyPage from "../pages/PrivacyPolicyPage";
+import ProfilePage from "../pages/ProfilePage"; // <-- Importa la nueva página de Perfil
+
+import { AuthProvider } from "../hooks/useAuth"; // <-- Importa el AuthProvider
+
+import ProtectedRoute from "../ProtectedRoute"; // <-- Importa el ProtectedRoute (lo crearemos en el Paso 6)
 
 import initialProductsData from "../data/products";
 
 import { CartProvider } from "../contexts/CartContext";
 import RegisterPage from "../pages/RegisterPage";
-import PrivacyPolicyPage from "../pages/PrivacyPolicyPage";
 
 function AppRoutes() {
   const [products, setProducts] = useState(initialProductsData);
 
-  const updateProductStock = (productId, quantityToRemove) => {
+  const updateProductStock = (productId, quantityToAdjust) => {
+    console.log(
+      `[AppRoutes - updateProductStock] Recibido para Producto ID: ${productId}, Cantidad a ajustar (restar): ${quantityToAdjust}`
+    );
     setProducts((prevProducts) =>
-      prevProducts.map((p) =>
-        p.id === productId ? { ...p, stock: p.stock - quantityToRemove } : p
-      )
+      prevProducts.map((p) => {
+        if (p.id === productId) {
+          const newStock = p.stock - quantityToAdjust;
+          console.log(
+            `[AppRoutes - updateProductStock] Producto: ${p.name}, Stock anterior: ${p.stock}, Stock nuevo: ${newStock}`
+          );
+          return { ...p, stock: newStock };
+        }
+        return p;
+      })
     );
   };
 
   return (
     <Router>
-      <CartProvider
-        updateProductStock={updateProductStock}
-        productsData={products}
-      >
+      {/* Envuelve toda la aplicación con AuthProvider */}
+      <AuthProvider>
         {" "}
-        <Header />
-        <Navbar />
-        <main>
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route
-              path="/products"
-              element={<ProductsListPage products={products} />}
-            />{" "}
-            <Route
-              path="/category/:categoryName"
-              element={<CategoryPage products={products} />}
-            />{" "}
-            <Route
-              path="/product/:id"
-              element={<ProductDetailPage products={products} />}
-            />{" "}
-            <Route path="/cart" element={<CartPage />} />
-            <Route path="/login" element={<LoginPage />} />
-            <Route path="/register" element={<RegisterPage />} />
-            <Route path="/about" element={<AboutPage />} />
-            <Route path="/contact" element={<ContactPage />} />
-            <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
-            <Route path="*" element={<NotFoundPage />} />
-          </Routes>
-        </main>
-        <Footer />
-      </CartProvider>{" "}
+        {/* <-- AÑADE ESTO */}
+        <CartProvider
+          updateProductStock={updateProductStock}
+          productsData={products}
+        >
+          <Header />
+          <Navbar />
+          <main>
+            <Routes>
+              <Route path="/" element={<HomePage />} />
+              <Route
+                path="/products"
+                element={<ProductsListPage products={products} />}
+              />
+              <Route
+                path="/category/:categoryName"
+                element={<CategoryPage products={products} />}
+              />
+              <Route
+                path="/product/:id"
+                element={<ProductDetailPage products={products} />}
+              />
+              <Route path="/cart" element={<CartPage />} />
+              <Route path="/login" element={<LoginPage />} />
+              <Route path="/register" element={<RegisterPage />} />
+              <Route path="/about" element={<AboutPage />} />
+              <Route path="/contact" element={<ContactPage />} />
+              <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
+
+              {/* RUTA PROTEGIDA para el Perfil del Usuario */}
+              {/* Solo se accede si el usuario está autenticado */}
+              <Route
+                path="/profile"
+                element={
+                  <ProtectedRoute>
+                    {" "}
+                    {/* <-- Envuelve ProfilePage con ProtectedRoute */}
+                    <ProfilePage />
+                  </ProtectedRoute>
+                }
+              />
+
+              <Route path="*" element={<NotFoundPage />} />
+            </Routes>
+          </main>
+          <Footer />
+        </CartProvider>
+      </AuthProvider>{" "}
+      {/* <-- CIERRA ESTO */}
     </Router>
   );
 }

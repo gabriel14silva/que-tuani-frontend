@@ -464,6 +464,184 @@
   }
 }
 
+/* INICIAR SESION */
+/* --- Estilos para LoginPage --- */
+.login-page {
+  max-width: 400px;
+  margin: 50px auto;
+  padding: 30px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  text-align: center;
+}
+
+.login-page__title {
+  color: #007bff;
+  margin-bottom: 30px;
+  font-size: 2.5em;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.login-form__group {
+  text-align: left;
+}
+
+.login-form__label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: 600;
+  color: #555;
+}
+
+.login-form__input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 1em;
+  box-sizing: border-box; /* Incluye padding y border en el width */
+}
+
+.login-form__error {
+  color: #dc3545; /* Rojo para mensajes de error */
+  font-size: 0.9em;
+  margin-top: -10px; /* Acercar al input */
+  margin-bottom: 10px;
+}
+
+.login-form__submit-button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1.1em;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+  margin-top: 20px;
+}
+
+.login-form__submit-button:hover {
+  background-color: #0056b3;
+}
+
+/* --- Estilos para ProfilePage --- */
+.profile-page {
+  max-width: 700px;
+  margin: 50px auto;
+  padding: 30px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  text-align: center;
+}
+
+.profile-page__title {
+  color: #007bff;
+  margin-bottom: 30px;
+  font-size: 2.5em;
+}
+
+.profile-card {
+  border: 1px solid #eee;
+  padding: 25px;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  margin-bottom: 40px;
+}
+
+.profile-card__avatar {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%; /* Para hacerlo redondo */
+  object-fit: cover; /* Asegura que la imagen no se distorsione */
+  margin-bottom: 20px;
+  border: 3px solid #007bff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.profile-card__name {
+  font-size: 1.8em;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.profile-card__info {
+  font-size: 1.1em;
+  color: #666;
+  margin-bottom: 8px;
+}
+
+.profile-card__info strong {
+  color: #000;
+}
+
+.profile-card__logout-button {
+  background-color: #dc3545; /* Rojo para cerrar sesión */
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1em;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+  margin-top: 25px;
+}
+
+.profile-card__logout-button:hover {
+  background-color: #c82333;
+}
+
+.profile-orders-section {
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 1px solid #eee;
+}
+
+.profile-orders-section__title {
+  color: #0056b3;
+  font-size: 2em;
+  margin-bottom: 20px;
+}
+
+.profile-orders-section__text {
+  color: #666;
+  font-size: 1.1em;
+}
+
+.profile-orders-section__text--placeholder {
+  font-style: italic;
+  color: #999;
+  margin-top: 10px;
+}
+
+/* Estilo para el botón de Cerrar Sesión en el Header (si lo añadiste como botón) */
+.header__nav-link--button {
+  background: none; /* Elimina el fondo de botón */
+  border: none; /* Elimina el borde de botón */
+  color: inherit; /* Hereda el color del texto del link normal */
+  padding: 0; /* Elimina el padding de botón */
+  font: inherit; /* Hereda la fuente */
+  cursor: pointer;
+  text-decoration: none; /* Asegura que no tenga subrayado */
+  /* Reutiliza los estilos de .header__nav-link para hover, etc. */
+}
+
+/* Para que el botón de cerrar sesión en el header se vea como un link */
+.header__nav-link--button:hover {
+  color: #dc3545; /* Color rojo al pasar el ratón para cerrar sesión */
+  text-decoration: underline; /* Opcional: subraya al pasar el ratón */
+  background-color: transparent; /* Asegura que no tenga fondo hover */
+}
+
 /* PRIVACY POLICY */
 .privacy-policy-page {
   max-width: 900px; /* Ancho máximo para el contenido */
