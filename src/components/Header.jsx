@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../hooks/useAuth"; // <-- Importa useAuth
 
 function Header() {
   const [searchTerm, setSearchTerm] = useState("");
   const navigate = useNavigate();
+  const { isAuthenticated, user, logout } = useAuth(); // <-- Obtén el estado de auth
 
   const handleSearchInputChange = (e) => {
     setSearchTerm(e.target.value);
@@ -17,6 +19,11 @@ function Header() {
       navigate("/products");
     }
     setSearchTerm("");
+  };
+
+  const handleLogout = () => {
+    logout();
+    navigate("/login");
   };
 
   return (
@@ -51,9 +58,23 @@ function Header() {
         <Link to="/cart" className="header__nav-link">
           🛒 Carrito
         </Link>
-        <Link to="/login" className="header__nav-link">
-          👤 Iniciar Sesión
-        </Link>
+        {isAuthenticated ? ( // <-- Renderiza condicionalmente
+          <>
+            <Link to="/profile" className="header__nav-link">
+              👤 Hola, {user?.name.split(" ")[0]}!
+            </Link>
+            <button
+              onClick={handleLogout}
+              className="header__nav-link header__nav-link--button"
+            >
+              Cerrar Sesión
+            </button>
+          </>
+        ) : (
+          <Link to="/login" className="header__nav-link">
+            👤 Iniciar Sesión
+          </Link>
+        )}
       </nav>
     </header>
   );
