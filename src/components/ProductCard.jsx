@@ -1,11 +1,10 @@
-import React, { useContext } from "react"; // Importa useContext
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
-import { CartContext } from "../contexts/CartContext"; // Importa CartContext
+import { CartContext } from "../contexts/CartContext";
 
 function ProductCard({ product }) {
-  const { addToCart } = useContext(CartContext); // Obtén addToCart del contexto
+  const { addToCart } = useContext(CartContext);
 
-  // Función para formatear el precio como Córdobas
   const formatPrice = (price) => {
     return new Intl.NumberFormat("es-NI", {
       style: "currency",
@@ -14,12 +13,10 @@ function ProductCard({ product }) {
   };
 
   const handleAddToCartClick = (e) => {
-    e.preventDefault(); // Previene la navegación si el botón está dentro de un Link
-    e.stopPropagation(); // Detiene la propagación del evento para que no se active el Link padre
+    e.preventDefault();
+    e.stopPropagation();
     if (product.stock > 0) {
-      addToCart(product, 1); // Agrega 1 unidad del producto al carrito
-      // Opcional: Podrías añadir un pequeño feedback visual aquí, como un toast o un alert.
-      // alert(`¡${product.name} añadido al carrito!`); // Ya se maneja en el CartContext
+      addToCart(product, 1);
     } else {
       alert("Producto agotado.");
     }
@@ -29,7 +26,6 @@ function ProductCard({ product }) {
 
   return (
     <div className="product-card">
-      {/* El Link para ir a la página de detalle al hacer clic en la tarjeta */}
       <Link to={`/product/${product.id}`} className="product-card__link">
         <img
           src={product.imageUrl}
@@ -42,12 +38,10 @@ function ProductCard({ product }) {
           Stock: {product.stock > 0 ? product.stock : "Agotado"}
         </p>
       </Link>{" "}
-      {/* Cierra el Link aquí si el botón no va dentro */}
-      {/* Botón de Añadir al Carrito */}
       <button
         onClick={handleAddToCartClick}
         className="product-detail__add-to-cart-button"
-        disabled={isOutOfStock} // Deshabilita si está agotado
+        disabled={isOutOfStock}
       >
         {isOutOfStock ? "Agotado" : "Añadir al Carrito"}
       </button>

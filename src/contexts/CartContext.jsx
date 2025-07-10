@@ -1,5 +1,5 @@
-import React, { createContext, useEffect } from "react"; // Eliminamos useState
-import useLocalStorage from "../hooks/useLocalStorage"; // <-- Importa tu nuevo Custom Hook
+import React, { createContext, useEffect } from "react";
+import useLocalStorage from "../hooks/useLocalStorage";
 
 export const CartContext = createContext();
 
@@ -8,18 +8,7 @@ export const CartProvider = ({
   updateProductStock,
   productsData,
 }) => {
-  // Usamos useLocalStorage para manejar el estado del carrito
-  // Su primera llamada ya intentará cargar de localStorage
-  const [cartItems, setCartItems] = useLocalStorage("cartItems", []); // <-- CAMBIO AQUÍ
-
-  // El useEffect para guardar en localStorage ya NO es necesario aquí,
-  // porque useLocalStorage lo maneja internamente.
-  // Puedes eliminar el siguiente bloque:
-  /*
-  useEffect(() => {
-    localStorage.setItem("cartItems", JSON.stringify(cartItems));
-  }, [cartItems]);
-  */
+  const [cartItems, setCartItems] = useLocalStorage("cartItems", []);
 
   const addToCart = (productToAdd, quantity) => {
     const existingItemIndex = cartItems.findIndex(
