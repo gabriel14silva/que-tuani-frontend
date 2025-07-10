@@ -18,43 +18,31 @@
   z-index: 1000;
 }
 
-.header__left {
-  display: flex;
-  align-items: center;
-  gap: var(--spacing-sm);
-  flex: 1;
-}
-
-.header__logo-image {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  object-fit: cover;
-}
-
 .header__logo-container {
   display: flex;
   align-items: center;
 }
 
 .header__logo-link {
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: var(--white-color);
-  text-decoration: none;
   display: flex;
   align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: var(--white-color);
+  font-size: 1.5em;
+  font-weight: bold;
 }
 
 .header__logo {
-  width: 40px;
+  height: 40px;
   height: 40px;
   border-radius: 50%;
   object-fit: cover;
 }
-.header__center {
+
+.header__search-container {
+  flex-grow: 1;
   display: flex;
-  flex: 2;
   justify-content: center;
 }
 
@@ -63,7 +51,7 @@
   align-items: center;
   gap: 10px;
   width: 100%;
-  max-width: 400px;
+  max-width: 550px;
 }
 
 .header__search-input {
@@ -89,33 +77,10 @@
   background-color: #b88600;
 }
 
-.header__right {
-  display: flex;
-  gap: var(--spacing-md);
-  flex: 1;
-  justify-content: flex-end;
-}
-
-.header__icon-link {
-  color: var(--white-color);
-  text-decoration: none;
-  font-size: var(--font-size-base);
-  display: flex;
-  align-items: center;
-  gap: var(--spacing-xs);
-  padding: var(--spacing-sm) var(--spacing-md);
-  border-radius: 5px;
-  transition: background-color 0.3s ease;
-}
-
-.header__icon-link:hover {
-  background-color: rgba(255, 255, 255, 0.1);
-}
-
 .header__nav {
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 5px;
 }
 
 .header__nav-link {
@@ -260,6 +225,331 @@
 .navbar__link:hover {
   color: var(--secondary-color);
   background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* ABOUT */
+.about-page {
+  max-width: 900px; /* Ancho máximo para el contenido */
+  margin: 40px auto; /* Centrar y añadir espacio arriba/abajo */
+  padding: 30px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  line-height: 1.6; /* Espaciado entre líneas para mejor lectura */
+  color: #333;
+}
+
+.about-page__title {
+  text-align: center;
+  color: #007bff; /* Color principal de tu marca */
+  margin-bottom: 30px;
+  font-size: 2.8em;
+  font-weight: 700;
+}
+
+.about-page__intro {
+  text-align: center;
+  font-size: 1.2em;
+  margin-bottom: 40px;
+  color: #555;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.about-page__section {
+  margin-bottom: 30px;
+  padding-top: 15px; /* Pequeño espacio para separar secciones */
+  border-top: 1px solid #eee; /* Línea divisoria suave */
+}
+
+.about-page__section:first-of-type {
+  border-top: none; /* No mostrar línea en la primera sección */
+  padding-top: 0;
+}
+
+.about-page__subtitle {
+  color: #0056b3; /* Un tono de azul más oscuro o complementario */
+  font-size: 1.8em;
+  margin-bottom: 15px;
+  border-bottom: 2px solid #f0f0f0; /* Subrayado sutil */
+  padding-bottom: 5px;
+}
+
+.about-page__values-list {
+  list-style: none; /* Quita los puntos de lista predeterminados */
+  padding: 0;
+  margin-top: 15px;
+}
+
+.about-page__values-list li {
+  background-color: #f9f9f9;
+  border-left: 5px solid #007bff; /* Barra de color a la izquierda */
+  padding: 10px 15px;
+  margin-bottom: 10px;
+  border-radius: 4px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.about-page__values-list li strong {
+  color: #007bff; /* Resalta el título del valor */
+}
+
+.about-page__contact-link {
+  color: #007bff; /* Color para el enlace de contacto */
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.about-page__contact-link:hover {
+  text-decoration: underline;
+}
+
+/* Puedes añadir media queries para hacerla responsive en pantallas pequeñas */
+@media (max-width: 768px) {
+  .about-page {
+    margin: 20px 15px;
+    padding: 20px;
+  }
+  .about-page__title {
+    font-size: 2em;
+  }
+  .about-page__subtitle {
+    font-size: 1.5em;
+  }
+}
+
+/* CONTACT */
+.contact-page {
+  max-width: 800px; /* Ancho máximo para el contenido */
+  margin: 40px auto; /* Centrar y añadir espacio arriba/abajo */
+  padding: 30px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  line-height: 1.6;
+  color: #333;
+}
+
+.contact-page__title {
+  text-align: center;
+  color: #007bff;
+  margin-bottom: 30px;
+  font-size: 2.8em;
+  font-weight: 700;
+}
+
+.contact-page__intro {
+  text-align: center;
+  font-size: 1.1em;
+  margin-bottom: 40px;
+  color: #555;
+}
+
+.contact-page__form-section,
+.contact-page__info-section {
+  margin-bottom: 30px;
+  padding-top: 15px;
+  border-top: 1px solid #eee;
+}
+
+.contact-page__form-section:first-of-type,
+.contact-page__info-section:first-of-type {
+  border-top: none;
+  padding-top: 0;
+}
+
+.contact-page__subtitle {
+  color: #0056b3;
+  font-size: 2em;
+  margin-bottom: 20px;
+  border-bottom: 2px solid #f0f0f0;
+  padding-bottom: 5px;
+  text-align: center; /* Centrar subtítulos */
+}
+
+/* --- Estilos para el Formulario de Contacto --- */
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px; /* Espacio entre los grupos de formulario */
+  max-width: 500px; /* Ancho máximo para el formulario */
+  margin: 0 auto; /* Centrar el formulario */
+}
+
+.contact-form__group {
+  display: flex;
+  flex-direction: column;
+}
+
+.contact-form__label {
+  margin-bottom: 5px;
+  font-weight: 600;
+  color: #333;
+}
+
+.contact-form__input,
+.contact-form__textarea {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 1em;
+  width: 100%; /* Asegura que ocupen el 100% del ancho disponible */
+  box-sizing: border-box; /* Incluye padding y borde en el ancho */
+}
+
+.contact-form__textarea {
+  resize: vertical; /* Permite redimensionar verticalmente */
+  min-height: 100px;
+}
+
+.contact-form__submit-button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1.1em;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+  margin-top: 10px; /* Espacio superior */
+}
+
+.contact-form__submit-button:hover {
+  background-color: #0056b3;
+}
+
+/* --- Estilos para la Información de Contacto --- */
+.contact-info-list {
+  list-style: none;
+  padding: 0;
+  margin-top: 20px;
+  text-align: center;
+}
+
+.contact-info-list li {
+  margin-bottom: 10px;
+  font-size: 1.1em;
+  color: #555;
+}
+
+.contact-info-list li strong {
+  color: #007bff;
+}
+
+.contact-info-list li a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.contact-info-list li a:hover {
+  text-decoration: underline;
+}
+
+/* Media queries para responsividad */
+@media (max-width: 768px) {
+  .contact-page {
+    margin: 20px 15px;
+    padding: 20px;
+  }
+  .contact-page__title {
+    font-size: 2em;
+  }
+  .contact-page__subtitle {
+    font-size: 1.6em;
+  }
+  .contact-form {
+    max-width: 100%; /* El formulario puede ocupar más espacio en móviles */
+  }
+}
+
+/* PRIVACY POLICY */
+.privacy-policy-page {
+  max-width: 900px; /* Ancho máximo para el contenido */
+  margin: 40px auto; /* Centrar y añadir espacio arriba/abajo */
+  padding: 30px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  line-height: 1.8; /* Mayor espaciado entre líneas para texto denso */
+  color: #333;
+}
+
+.privacy-policy-page__title {
+  text-align: center;
+  color: #007bff;
+  margin-bottom: 20px;
+  font-size: 2.5em; /* Un poco más pequeño que el título principal de otras páginas */
+  font-weight: 700;
+}
+
+.privacy-policy-page__intro {
+  text-align: center;
+  font-size: 0.9em;
+  color: #777;
+  margin-bottom: 30px;
+}
+
+.privacy-policy-page__section {
+  margin-bottom: 25px;
+  padding-top: 15px;
+  border-top: 1px solid #eee;
+}
+
+.privacy-policy-page__section:first-of-type {
+  border-top: none;
+  padding-top: 0;
+}
+
+.privacy-policy-page__subtitle {
+  color: #0056b3;
+  font-size: 1.8em;
+  margin-bottom: 15px;
+  border-bottom: 2px solid #f0f0f0;
+  padding-bottom: 5px;
+}
+
+.privacy-policy-page__list {
+  list-style: disc; /* Usar viñetas de disco */
+  margin-left: 25px; /* Sangría para las viñetas */
+  margin-top: 15px;
+}
+
+.privacy-policy-page__list li {
+  margin-bottom: 8px;
+  line-height: 1.5;
+}
+
+.privacy-policy-page__list li strong {
+  color: #007bff;
+}
+
+.privacy-policy-page a {
+  color: #007bff;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.privacy-policy-page a:hover {
+  text-decoration: underline;
+}
+
+/* Media queries para responsividad */
+@media (max-width: 768px) {
+  .privacy-policy-page {
+    margin: 20px 15px;
+    padding: 20px;
+  }
+  .privacy-policy-page__title {
+    font-size: 2em;
+  }
+  .privacy-policy-page__subtitle {
+    font-size: 1.4em;
+  }
+  .privacy-policy-page__list {
+    margin-left: 15px;
+  }
 }
 
 /* FOOTER */

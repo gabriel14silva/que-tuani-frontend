@@ -12,10 +12,14 @@ import ProductDetailPage from "../pages/ProductDetailPage";
 import CartPage from "../pages/CartPage";
 import LoginPage from "../pages/LoginPage";
 import NotFoundPage from "../pages/NotFoundPage";
+import AboutPage from "../pages/AboutPage";
+import ContactPage from "../pages/ContactPage";
 
 import initialProductsData from "../data/products";
 
 import { CartProvider } from "../contexts/CartContext";
+import RegisterPage from "../pages/RegisterPage";
+import PrivacyPolicyPage from "../pages/PrivacyPolicyPage";
 
 function AppRoutes() {
   const [products, setProducts] = useState(initialProductsData);
@@ -54,16 +58,10 @@ function AppRoutes() {
             />{" "}
             <Route path="/cart" element={<CartPage />} />
             <Route path="/login" element={<LoginPage />} />
-            <Route
-              path="/about"
-              element={
-                <p className="basic-page-content">Página Acerca de nosotros</p>
-              }
-            />
-            <Route
-              path="/contact"
-              element={<p className="basic-page-content">Página de Contacto</p>}
-            />
+            <Route path="/register" element={<RegisterPage />} />
+            <Route path="/about" element={<AboutPage />} />
+            <Route path="/contact" element={<ContactPage />} />
+            <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
             <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </main>
