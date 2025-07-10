@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate, Link } from "react-router-dom"; // ¡Importa Link!
+import { useNavigate, Link } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth.jsx";
 
 function LoginPage() {
@@ -51,7 +51,6 @@ function LoginPage() {
           Entrar
         </button>
 
-        {/* ¡NUEVO ELEMENTO AQUÍ! */}
         <p className="login-page__register-text">
           ¿No tienes una cuenta?{" "}
           <Link to="/register" className="login-page__register-link">

@@ -22,7 +22,6 @@ import { AuthProvider } from "../hooks/useAuth.jsx";
 
 import initialProductsData from "../data/products";
 
-// Importa useCart desde tu CartContext
 import { CartProvider, useCart } from "../contexts/CartContext.jsx";
 import ProtectedRoute from "../ProtectedRoute.jsx";
 
@@ -54,7 +53,6 @@ function AppRoutes() {
           updateProductStock={updateProductStock}
           productsData={products}
         >
-          {/* Componente auxiliar para obtener el conteo del carrito */}
           <CartCountPasser
             products={products}
             updateProductStock={updateProductStock}
@@ -65,22 +63,20 @@ function AppRoutes() {
   );
 }
 
-// Nuevo componente auxiliar para pasar el conteo del carrito
 function CartCountPasser({ products, updateProductStock }) {
-  const { cartItems } = useCart(); // <-- Obtén los ítems del carrito
+  const { cartItems } = useCart();
   const cartItemCount = cartItems.reduce(
     (total, item) => total + item.quantity,
     0
-  ); // Calcula la cantidad total
+  );
 
   return (
     <>
-      <Header cartItemCount={cartItemCount} />{" "}
-      {/* <-- Pasa el conteo al Header */}
+      <Header cartItemCount={cartItemCount} />
       <Navbar />
       <main>
         <Routes>
-          <Route path="/" element={<HomePage />} />
+          <Route path="/" element={<HomePage products={products} />} />
           <Route
             path="/products"
             element={<ProductsListPage products={products} />}

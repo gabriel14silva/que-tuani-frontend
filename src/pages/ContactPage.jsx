@@ -18,15 +18,11 @@ function ContactPage() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Aquí es donde en una aplicación real enviarías los datos del formulario.
-    // Esto podría ser a una API, un servicio de correo electrónico, etc.
-    // Por ahora, solo lo mostraremos en la consola.
+
     console.log("Formulario de contacto enviado:", formData);
 
-    // Puedes añadir lógica para mostrar un mensaje de éxito al usuario
     alert("¡Mensaje enviado con éxito! Te responderemos pronto.");
 
-    // Limpiar el formulario después del envío
     setFormData({
       name: "",
       email: "",

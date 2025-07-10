@@ -2,9 +2,7 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth.jsx";
 
-// Recibe cartItemCount como prop
 function Header({ cartItemCount }) {
-  // <-- Añade cartItemCount aquí
   const [searchTerm, setSearchTerm] = useState("");
   const navigate = useNavigate();
   const { isAuthenticated, user, logout } = useAuth();
@@ -59,9 +57,7 @@ function Header({ cartItemCount }) {
       <nav className="header__nav">
         <Link to="/cart" className="header__nav-link header__cart-link">
           {" "}
-          {/* <-- Añade una clase para el estilo */}
           🛒 Carrito
-          {/* ¡NUEVO: Muestra el conteo si es mayor que 0! */}
           {cartItemCount > 0 && (
             <span className="header__cart-badge">{cartItemCount}</span>
           )}

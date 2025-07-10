@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth.jsx";
-import MOCK_ORDERS from "../data/orders.js"; // <-- ¡Importa tus pedidos ficticios!
+import MOCK_ORDERS from "../data/orders.js";
 
 function ProfilePage() {
   const { user, logout } = useAuth();
