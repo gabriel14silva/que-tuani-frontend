@@ -2,7 +2,7 @@ const productsData = [
   {
     id: "p1", // ID cambiado de "1" a "p1"
     name: "Laptop Ultrabook X1",
-    price: 1200.0,
+    price: 45600.0,
     imageUrl: "/src/assets/images/products/laptop-ultrabook-x.png",
     category: "electronics",
     description:
@@ -12,7 +12,7 @@ const productsData = [
   {
     id: "p2", // ID cambiado
     name: "Camiseta de Algodón Orgánico",
-    price: 25.0,
+    price: 890.0,
     imageUrl: "/src/assets/images/products/camiseta-de-algodon.png",
     category: "clothing",
     description:
@@ -22,7 +22,7 @@ const productsData = [
   {
     id: "p3", // ID cambiado
     name: "Auriculares Inalámbricos Pro",
-    price: 99.99,
+    price: 1320.99,
     imageUrl: "/src/assets/images/products/auriculares-inalambricos.png",
     category: "electronics",
     description:
@@ -32,7 +32,7 @@ const productsData = [
   {
     id: "p4", // ID cambiado
     name: "Jeans Slim Fit Elásticos",
-    price: 45.0,
+    price: 1150.0,
     imageUrl: "/src/assets/images/products/jeans-azul.png",
     category: "clothing",
     description:
@@ -42,7 +42,7 @@ const productsData = [
   {
     id: "p5", // ID cambiado
     name: "Tostadora Compacta 2 Rebanadas",
-    price: 35.5,
+    price: 9670.5,
     imageUrl: "/src/assets/images/products/tostadora.png",
     category: "home",
     description:
@@ -52,7 +52,7 @@ const productsData = [
   {
     id: "p6", // ID cambiado
     name: "Smartwatch Deportivo Serie 5",
-    price: 250.0,
+    price: 4600.0,
     imageUrl: "/src/assets/images/products/smartwatch-deportivo-serie-5.png",
     category: "electronics",
     description:
@@ -62,7 +62,7 @@ const productsData = [
   {
     id: "p7", // ID cambiado (y corregido para que no sea un duplicado de p1 o p2)
     name: "Mouse Ergonómico Inalámbrico",
-    price: 30.0,
+    price: 780.0,
     imageUrl: "/src/assets/images/products/mouse-ergonomico.png",
     category: "electronics",
     description:
@@ -72,7 +72,7 @@ const productsData = [
   {
     id: "p8", // ID cambiado
     name: "Sudadera con Capucha Clásica",
-    price: 55.0,
+    price: 980.0,
     imageUrl: "/src/assets/images/products/sudadera-con-capucha.png",
     category: "clothing",
     description:
@@ -82,7 +82,7 @@ const productsData = [
   {
     id: "p9", // ID cambiado
     name: "Cafetera de Goteo Programable",
-    price: 70.0,
+    price: 3400.0,
     imageUrl: "/src/assets/images/products/cafetera-automatica.png",
     category: "home",
     description:
@@ -92,7 +92,7 @@ const productsData = [
   {
     id: "p10", // ID cambiado
     name: "Monitor Curvo Gaming 27''",
-    price: 399.0,
+    price: 25700.87,
     imageUrl: "/src/assets/images/products/monitor-curvo.png",
     category: "electronics",
     description:
@@ -102,7 +102,7 @@ const productsData = [
   {
     id: "p11", // ID cambiado
     name: "Libro: El Señor de los Anillos",
-    price: 20.0,
+    price: 870.0,
     imageUrl: "/src/assets/images/products/libro-senior-anillos.png",
     category: "books", // Nueva categoría de ejemplo
     description:
@@ -112,7 +112,7 @@ const productsData = [
   {
     id: "p12", // ID cambiado
     name: "Mochila Antirrobo USB",
-    price: 40.0,
+    price: 1300.0,
     imageUrl: "/src/assets/images/products/mochila-usb.png",
     category: "accessories", // Nueva categoría de ejemplo
     description:
@@ -122,7 +122,7 @@ const productsData = [
   {
     id: "p13", // ID cambiado
     name: "Iphone 14 Pro Max",
-    price: 40.0,
+    price: 36500.98,
     imageUrl: "/src/assets/images/products/iphone14promax.png",
     category: "accessories", // Nueva categoría de ejemplo
     description:
@@ -132,12 +132,22 @@ const productsData = [
   {
     id: "p14", // ID cambiado
     name: "Teclado Mecánico RGB",
-    price: 40.0,
+    price: 2600.0,
     imageUrl: "/src/assets/images/products/teclado.png",
     category: "accessories", // Nueva categoría de ejemplo
     description:
       "Teclado mecánico con retroiluminación RGB personalizable, ideal para gamers y escritores.",
     stock: 15,
+  },
+  {
+    id: "p15", // ID cambiado
+    name: "Sillón sofá de gamusa",
+    price: 16900.78,
+    imageUrl: "/src/assets/images/products/sillon.png",
+    category: "home", // Nueva categoría de ejemplo
+    description:
+      "Sillón sofá de gamusa, cómodo y elegante, perfecto para cualquier sala de estar.",
+    stock: 12,
   },
 ];
 
