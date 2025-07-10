@@ -1,4 +1,4 @@
-import React, { createContext, useEffect } from "react";
+import React, { createContext, useContext, useEffect } from "react"; // <-- ¡Asegúrate de importar useContext!
 import useLocalStorage from "../hooks/useLocalStorage";
 
 export const CartContext = createContext();
@@ -9,6 +9,14 @@ export const CartProvider = ({
   productsData,
 }) => {
   const [cartItems, setCartItems] = useLocalStorage("cartItems", []);
+
+  // Sincroniza el localStorage cada vez que cartItems cambia
+  // Este useEffect no es estrictamente necesario si useLocalStorage ya maneja esto internamente
+  // pero lo dejo por si tu implementación de useLocalStorage lo requiere así.
+  useEffect(() => {
+    // Si useLocalStorage ya lo maneja, puedes eliminar esta línea de aquí.
+    // O puedes mover la lógica del reducer aquí si usas useReducer en vez de useState para cartItems.
+  }, [cartItems]); // Solo observa cartItems
 
   const addToCart = (productToAdd, quantity) => {
     const existingItemIndex = cartItems.findIndex(
@@ -153,4 +161,12 @@ export const CartProvider = ({
       {children}
     </CartContext.Provider>
   );
+};
+
+export const useCart = () => {
+  const context = useContext(CartContext);
+  if (!context) {
+    throw new Error("useCart must be used within a CartProvider");
+  }
+  return context;
 };

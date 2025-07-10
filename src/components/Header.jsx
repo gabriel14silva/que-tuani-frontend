@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useAuth } from "../hooks/useAuth"; // <-- Importa useAuth
+import { useAuth } from "../hooks/useAuth.jsx";
 
-function Header() {
+// Recibe cartItemCount como prop
+function Header({ cartItemCount }) {
+  // <-- Añade cartItemCount aquí
   const [searchTerm, setSearchTerm] = useState("");
   const navigate = useNavigate();
-  const { isAuthenticated, user, logout } = useAuth(); // <-- Obtén el estado de auth
+  const { isAuthenticated, user, logout } = useAuth();
 
   const handleSearchInputChange = (e) => {
     setSearchTerm(e.target.value);
@@ -55,10 +57,16 @@ function Header() {
       </div>
 
       <nav className="header__nav">
-        <Link to="/cart" className="header__nav-link">
+        <Link to="/cart" className="header__nav-link header__cart-link">
+          {" "}
+          {/* <-- Añade una clase para el estilo */}
           🛒 Carrito
+          {/* ¡NUEVO: Muestra el conteo si es mayor que 0! */}
+          {cartItemCount > 0 && (
+            <span className="header__cart-badge">{cartItemCount}</span>
+          )}
         </Link>
-        {isAuthenticated ? ( // <-- Renderiza condicionalmente
+        {isAuthenticated ? (
           <>
             <Link to="/profile" className="header__nav-link">
               👤 Hola, {user?.name.split(" ")[0]}!
