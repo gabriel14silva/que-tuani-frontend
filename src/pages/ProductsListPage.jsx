@@ -6,8 +6,8 @@ import ProductGrid from "../components/ProductGrid";
 function ProductsListPage({ products }) {
   const location = useLocation();
   const [searchTerm, setSearchTerm] = useState("");
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
+  const [loading] = useState(false);
+  const [error] = useState(null);
 
   useEffect(() => {
     const queryParams = new URLSearchParams(location.search);

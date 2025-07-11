@@ -63,7 +63,7 @@ function AppRoutes() {
   );
 }
 
-function CartCountPasser({ products, updateProductStock }) {
+function CartCountPasser({ products }) {
   const { cartItems } = useCart();
   const cartItemCount = cartItems.reduce(
     (total, item) => total + item.quantity,
