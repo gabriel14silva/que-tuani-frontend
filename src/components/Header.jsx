@@ -31,7 +31,7 @@ function Header({ cartItemCount }) {
       <div className="header__logo-container">
         <Link to="/" className="header__logo-link">
           <img
-            src="/src/assets/images/logos/logoquetuani.png"
+            src="/images/logos/logoquetuani.png"
             alt="Tu Tienda Online"
             className="header__logo"
           />

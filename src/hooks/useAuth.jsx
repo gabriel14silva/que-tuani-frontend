@@ -9,7 +9,7 @@ const MOCK_USER = {
   name: "Gabriel Griffin",
   email: "griffinsilva10@gmail.com",
   role: "customer",
-  avatar: "/src/assets/images/users/gabriel-griffin.jpg",
+  avatar: "/images/users/gabriel-griffin.jpg",
 };
 
 export const AuthProvider = ({ children }) => {

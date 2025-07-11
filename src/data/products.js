@@ -3,7 +3,7 @@ const productsData = [
     id: "p1",
     name: "Laptop Ultrabook X1",
     price: 45600.0,
-    imageUrl: "/src/assets/images/products/laptop-ultrabook-x.png",
+    imageUrl: "/images/products/laptop-ultrabook-x.png",
     category: "electronics",
     description:
       "Laptop ultraligera y potente con procesador de última generación y 16GB de RAM.", // Nueva propiedad
@@ -13,7 +13,7 @@ const productsData = [
     id: "p2",
     name: "Camiseta de Algodón Orgánico",
     price: 890.0,
-    imageUrl: "/src/assets/images/products/camiseta-de-algodon.png",
+    imageUrl: "/images/products/camiseta-de-algodon.png",
     category: "clothing",
     description:
       "Camiseta suave de algodón 100% orgánico, ideal para uso diario y muy transpirable.",
@@ -24,7 +24,7 @@ const productsData = [
     id: "p3",
     name: "Auriculares Inalámbricos Pro",
     price: 1320.99,
-    imageUrl: "/src/assets/images/products/auriculares-inalambricos.png",
+    imageUrl: "/images/products/auriculares-inalambricos.png",
     category: "electronics",
     description:
       "Sonido de alta fidelidad con cancelación de ruido activa y hasta 24 horas de batería.",
@@ -35,7 +35,7 @@ const productsData = [
     id: "p4",
     name: "Jeans Slim Fit Elásticos",
     price: 1150.0,
-    imageUrl: "/src/assets/images/products/jeans-azul.png",
+    imageUrl: "/images/products/jeans-azul.png",
     category: "clothing",
     description:
       "Jeans ajustados pero cómodos, con tejido elástico para mayor libertad de movimiento.",
@@ -45,7 +45,7 @@ const productsData = [
     id: "p5",
     name: "Tostadora Compacta 2 Rebanadas",
     price: 9670.5,
-    imageUrl: "/src/assets/images/products/tostadora.png",
+    imageUrl: "/images/products/tostadora.png",
     category: "home",
     description:
       "Tostadora moderna con ranuras anchas y 7 niveles de tostado para un desayuno perfecto.",
@@ -55,7 +55,7 @@ const productsData = [
     id: "p6",
     name: "Smartwatch Deportivo Serie 5",
     price: 4600.0,
-    imageUrl: "/src/assets/images/products/smartwatch-deportivo-serie-5.png",
+    imageUrl: "/images/products/smartwatch-deportivo-serie-5.png",
     category: "electronics",
     description:
       "Reloj inteligente con GPS, monitor de ritmo cardíaco y seguimiento de actividad física.",
@@ -65,7 +65,7 @@ const productsData = [
     id: "p7",
     name: "Mouse Ergonómico Inalámbrico",
     price: 780.0,
-    imageUrl: "/src/assets/images/products/mouse-ergonomico.png",
+    imageUrl: "/images/products/mouse-ergonomico.png",
     category: "electronics",
     description:
       "Diseño ergonómico para largas horas de uso, con conexión inalámbrica de 2.4GHz.",
@@ -76,7 +76,7 @@ const productsData = [
     id: "p8",
     name: "Sudadera con Capucha Clásica",
     price: 980.0,
-    imageUrl: "/src/assets/images/products/sudadera-con-capucha.png",
+    imageUrl: "/images/products/sudadera-con-capucha.png",
     category: "clothing",
     description:
       "Sudadera cómoda y versátil, perfecta para cualquier estación, con bolsillo canguro.",
@@ -86,7 +86,7 @@ const productsData = [
     id: "p9",
     name: "Cafetera de Goteo Programable",
     price: 3400.0,
-    imageUrl: "/src/assets/images/products/cafetera-automatica.png",
+    imageUrl: "/images/products/cafetera-automatica.png",
     category: "home",
     description:
       "Prepara tu café automáticamente con su temporizador programable y jarra de 12 tazas.",
@@ -96,7 +96,7 @@ const productsData = [
     id: "p10",
     name: "Monitor Curvo Gaming 27''",
     price: 25700.87,
-    imageUrl: "/src/assets/images/products/monitor-curvo.png",
+    imageUrl: "/images/products/monitor-curvo.png",
     category: "electronics",
     description:
       "Experiencia de juego inmersiva con alta tasa de refresco y tiempo de respuesta rápido.",
@@ -106,7 +106,7 @@ const productsData = [
     id: "p11",
     name: "Libro: El Señor de los Anillos",
     price: 870.0,
-    imageUrl: "/src/assets/images/products/libro-senior-anillos.png",
+    imageUrl: "/images/products/libro-senior-anillos.png",
     category: "books",
     description:
       "Edición especial de la épica trilogía de J.R.R. Tolkien, imprescindible en tu biblioteca.",
@@ -116,7 +116,7 @@ const productsData = [
     id: "p12",
     name: "Mochila Antirrobo USB",
     price: 1300.0,
-    imageUrl: "/src/assets/images/products/mochila-usb.png",
+    imageUrl: "/images/products/mochila-usb.png",
     category: "accessories",
     description:
       "Mochila segura con compartimentos ocultos y puerto de carga USB integrado.",
@@ -126,7 +126,7 @@ const productsData = [
     id: "p13",
     name: "Iphone 14 Pro Max",
     price: 36500.98,
-    imageUrl: "/src/assets/images/products/iphone14promax.png",
+    imageUrl: "/images/products/iphone14promax.png",
     category: "accessories",
     description:
       "Iphone 14 Pro Max con pantalla Super Retina XDR, chip A16 Bionic y cámara triple de 48MP.",
@@ -137,7 +137,7 @@ const productsData = [
     id: "p14",
     name: "Teclado Mecánico RGB",
     price: 2600.0,
-    imageUrl: "/src/assets/images/products/teclado.png",
+    imageUrl: "/images/products/teclado.png",
     category: "accessories",
     description:
       "Teclado mecánico con retroiluminación RGB personalizable, ideal para gamers y escritores.",
@@ -147,7 +147,7 @@ const productsData = [
     id: "p15",
     name: "Sillón sofá de gamusa",
     price: 16900.78,
-    imageUrl: "/src/assets/images/products/sillon.png",
+    imageUrl: "/images/products/sillon.png",
     category: "home",
     description:
       "Sillón sofá de gamusa, cómodo y elegante, perfecto para cualquier sala de estar.",
@@ -157,7 +157,7 @@ const productsData = [
     id: "p16",
     name: "Ropero de Madera Natural",
     price: 27300.98,
-    imageUrl: "/src/assets/images/products/ropero-madera.png",
+    imageUrl: "/images/products/ropero-madera.png",
     category: "home",
     description:
       "Ropero de madera natural, espacioso y con un diseño elegante, ideal para organizar tu ropa.",
@@ -167,7 +167,7 @@ const productsData = [
     id: "p17",
     name: "Vestido de Noche Elegante",
     price: 2350.98,
-    imageUrl: "/src/assets/images/products/vestido-azul.png",
+    imageUrl: "/images/products/vestido-azul.png",
     category: "clothing",
     description:
       "Vestido de noche elegante, confeccionado con telas de alta calidad y un diseño sofisticado.",
